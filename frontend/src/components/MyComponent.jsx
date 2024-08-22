@@ -8,7 +8,7 @@ import EditorComponent from "./EditorComponent";
 
 class MyComponent extends StreamlitComponentBase {
     render = () => {
-        const initialData =this.props.args["initialData"];
+        const initialData =this.props.args["data"];
 
         return (
             <EditorComponent 
