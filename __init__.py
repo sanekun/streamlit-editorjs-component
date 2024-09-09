@@ -1,5 +1,8 @@
 import streamlit as st
 import streamlit.components.v1 as components
+import sys
+sys.path.append("../")
+from streamlit_editor import streamlit_editorjs
 
 _my_component = components.declare_component(
     "streamlit-editorjs-v2",
@@ -35,11 +38,11 @@ initial_data = {
         ]
 }
 
-st.title("A")
-
+st.title("EditorJS")
 with st.container(border=True, height=500):
     content = _my_component(data=initial_data, key='test')
 
 # st.write(content)
 if st.button("  Get data  "):
-    st.rerun()
+    st.write(content)
+    # st.rerun()

@@ -42,7 +42,7 @@ function EditorComponent ({ initialData }) {
     };
 
     useEffect(() => {
-      //  Streamlit.setFrameHeight();
+        Streamlit.setFrameHeight();
         if (editorRef.current === null) {
             initEditor();
         }

@@ -6,7 +6,7 @@ import MyComponent from './components/EditorComponent';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <div>
+    <div style={{padding: "10px", margin: "10px", width: "90%", border: "1px"}}> 
     <MyComponent />
     </div>
   </React.StrictMode>
