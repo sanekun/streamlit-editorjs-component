@@ -1,6 +1,6 @@
 import Embed from '@editorjs/embed';
 import Table from '@editorjs/table';
-import List from '@editorjs/list'
+// import List from '@editorjs/list'
 import Warning from '@editorjs/warning';
 import Code from '@editorjs/code';
 import LinkTool from '@editorjs/link';
@@ -15,7 +15,7 @@ import InlineCode from '@editorjs/inline-code';
 import SimpleImage from '@editorjs/simple-image';
 // import Paragraph from 'editorjs-paragraph-with-alignment';
 import NestedList from '@editorjs/nested-list';
-import AttachesTool from '@editorjs/attaches';
+// import AttachesTool from '@editorjs/attaches';
 
 const AnyButton = require('editorjs-button');
 
@@ -57,5 +57,5 @@ export const EDITOR_JS_TOOLS = {
     checklist: CheckList,
     delimiter: Delimiter,
     inlineCode: InlineCode,
-    image: SimpleImage,
+    image: SimpleImage
 };

@@ -7,14 +7,21 @@ import React, { useRef, useEffect } from 'react';
 import { EDITOR_JS_TOOLS } from './constant';
 import EditorJS from '@editorjs/editorjs';
 
+// if st_height === null; set 500px
+//let st_height = this.props.args["height"] | 500;
+
 class Mycomponent extends StreamlitComponentBase {
     render = () => {
-        const initialData = this.props.args["data"];
-
+        let initialData = this.props.args["data"];
+        let st_height = this.props.args["height"] || 500;
         return (
-            <EditorComponent 
-            initialData={initialData}
-            />
+            <div style={{height: `${st_height}px`}}>
+                <div style={{height: "90%", overflow: "auto", margin: "10px", padding: "10px", width: "90%"}}>
+                    <EditorComponent
+                    initialData={initialData}
+                    />
+                </div>
+            </div>
         );
     }
 }
@@ -42,15 +49,16 @@ function EditorComponent ({ initialData }) {
     };
 
     useEffect(() => {
-        Streamlit.setFrameHeight();
         if (editorRef.current === null) {
             initEditor();
+            Streamlit.setComponentReady();
         }
 
         return () => {
             editorRef?.current?.destory();
             editorRef.current = null;
         };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     return (
