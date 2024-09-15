@@ -11,6 +11,7 @@ from streamlit-editorjs-component import streamlit_editorjs
 content = streamlit_editorjs(height=500)
 ```
 
+``` plain text
 Args:  
     data (dict): initial json data formatted as EditorJS.  
     key (str, optional): Streamlit state key. Defaults to None.  
@@ -18,3 +19,4 @@ Args:
 
 Returns:  
     dict: dictionary content from EditorJS.
+```
