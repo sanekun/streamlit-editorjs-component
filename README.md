@@ -6,13 +6,15 @@ Custom component for editorjs.
 ### Usage
 
 ``` python
-import streamlit as st
-import streamlit-editorjs-component as st_editorjs
+from streamlit-editorjs-component import streamlit_editorjs
 
-st_editorjs()
+content = streamlit_editorjs(height=500)
 ```
-params
-    defaultvalue: input json value. Formula is follow specific json format of Editorjs.
 
-output
-    Written json value.
+Args:  
+    data (dict): initial json data formatted as EditorJS.  
+    key (str, optional): Streamlit state key. Defaults to None.  
+    height (int, optional): Component block height it the content over the height, it makes scroll. Defaults to 500.
+
+Returns:  
+    dict: dictionary content from EditorJS.
