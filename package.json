@@ -1,4 +1,7 @@
 {
+  "workspaces": [
+    "streamlit-editorjs-component/frontend"
+  ],
   "dependencies": {
     "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
     "streamlit-component-lib": "^2.0.0"

@@ -49,9 +49,9 @@ function EditorComponent ({ initialData }) {
     };
 
     useEffect(() => {
+        Streamlit.setComponentReady();
+        initEditor();
         if (editorRef.current === null) {
-            initEditor();
-            Streamlit.setComponentReady();
         }
 
         return () => {
