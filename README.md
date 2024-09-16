@@ -13,7 +13,7 @@ content = streamlit_editorjs(height=500)
 
 ``` plain text
 Args:  
-    data (dict): initial json data formatted as EditorJS.  
+    data (dict, optional): initial json data formatted as EditorJS. Defaults to None.  
     key (str, optional): Streamlit state key. Defaults to None.  
     height (int, optional): Component block height it the content over the height, it makes scroll. Defaults to 500.
 
