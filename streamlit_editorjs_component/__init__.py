@@ -1,7 +1,7 @@
 import os
 import streamlit.components.v1 as components
 
-_RELEASE = True # toggle to develop mode or release mode
+_RELEASE = True  # toggle to develop mode or release mode
 
 if _RELEASE:
     root_dir = os.path.dirname(os.path.abspath(__file__))
@@ -14,7 +14,7 @@ if _RELEASE:
 else:
     _custom_component = components.declare_component(
         "streamlit-editorjs",
-        url="http://localhost:3001"
+        url="http://localhost:3000"
     )
 
 def streamlit_editorjs(data=None, key=None, height=500):
@@ -28,34 +28,17 @@ def streamlit_editorjs(data=None, key=None, height=500):
     Returns:
         dict: dictionary content from EditorJS.
     """
+    
     st_editorjs = _custom_component(data=data, key=key, height=height)
+    
     return st_editorjs
 
 if not _RELEASE:
     import streamlit as st
+
+    initial_data = {}
     
-    initial_data = {
-            "time": "1552744582955",
-            "blocks": [
-                {
-                    "type": "header",
-                    "data": {
-                        "text": "test.js",
-                        "level": 2
-                    }
-                },
-                {
-                    "type": "table",
-                    "data": {
-                        "content": [
-                            ["a", "b", "c"],
-                            ["1", "2", "3"]
-                        ]
-                    }
-                }
-            ]
-    }
-    content = streamlit_editorjs(data= initial_data, key='test', height=500)
+    content = streamlit_editorjs(data= initial_data, key='editorjs_release', height=300)
 
     if st.button("Get data"):
         st.write(content)
