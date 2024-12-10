@@ -1,7 +1,8 @@
 import React, { useRef, useEffect } from 'react';
 import { EDITOR_JS_TOOLS } from './constant';
 import EditorJS from '@editorjs/editorjs';
-import { Streamlit } from 'streamlit-component-lib';
+import Header from "@editorjs/header";
+
 let content = null;
 function MyComponent({ initialData }) {
     const editorRef = useRef();
@@ -17,12 +18,13 @@ function MyComponent({ initialData }) {
             onChange: async () => {
                 content = await editor.saver.save();
                 console.log(JSON.stringify(content));
-                Streamlit.setComponentValue(JSON.stringify(content));
             },
-            tools: EDITOR_JS_TOOLS,
+            tools: {header: Header},
+            //tools: EDITOR_JS_TOOLS,
         });
     };
     useEffect(() => {
+        initEditor();
         if (editorRef.current === null) {
             initEditor();
         }

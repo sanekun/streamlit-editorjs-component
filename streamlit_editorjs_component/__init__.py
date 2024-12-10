@@ -1,5 +1,6 @@
 import os
 import streamlit.components.v1 as components
+from pathlib import Path
 
 _RELEASE = True  # toggle to develop mode or release mode
 
@@ -7,8 +8,10 @@ if _RELEASE:
     root_dir = os.path.dirname(os.path.abspath(__file__))
     build_dir = os.path.join(root_dir, "frontend/build")
 
+    print (build_dir)
+    print (Path(os.path.join(build_dir, "index.html")).exists())
     _custom_component = components.declare_component(
-        "streamlit-editorjs",
+        name="streamlit_editorjs",
         path=build_dir
     )
 else:
@@ -33,12 +36,14 @@ def streamlit_editorjs(data=None, key=None, height=500):
     
     return st_editorjs
 
-if not _RELEASE:
+if True:
     import streamlit as st
 
+    st.title("Streamlit EditorJS Component")
+    
     initial_data = {}
     
-    content = streamlit_editorjs(data= initial_data, key='editorjs_release', height=300)
+    content = streamlit_editorjs(data= initial_data, key='editorjs', height=300)
 
     if st.button("Get data"):
         st.write(content)
