@@ -6,9 +6,7 @@ import {
 import React, { useRef, useEffect } from 'react';
 import { EDITOR_JS_TOOLS } from './constant';
 import EditorJS from '@editorjs/editorjs';
-
-// if st_height === null; set 500px
-//let st_height = this.props.args["height"] | 500;
+import Header from "@editorjs/header";
 
 class Mycomponent extends StreamlitComponentBase {
     render = () => {
@@ -16,7 +14,7 @@ class Mycomponent extends StreamlitComponentBase {
         let st_height = this.props.args["height"] || 500;
         return (
             <div style={{height: `${st_height}px`}}>
-                <div style={{height: "90%", overflow: "auto", margin: "10px", padding: "10px", width: "90%"}}>
+                <div style={{height: "90%", overflow: "auto", margin: "20px", padding: "20px", width: "90%"}}>
                     <EditorComponent
                     initialData={initialData}
                     />
@@ -26,6 +24,18 @@ class Mycomponent extends StreamlitComponentBase {
     }
 }
 
+// class Mycomponent extends StreamlitComponentBase {
+//     render = () => {
+//         let initialData = this.props.args["data"];
+//         let st_height = this.props.args["height"] || 500;
+//         return (
+//             <EditorComponent
+//             initialData={initialData}
+//             />
+//         );
+//     }
+// }
+
 function EditorComponent ({ initialData }) {
     const editorRef = useRef();
     let content = null;
@@ -33,7 +43,6 @@ function EditorComponent ({ initialData }) {
     const initEditor = () => {
         const editor = new EditorJS({
             holder: 'editorjs',
-            tools: EDITOR_JS_TOOLS,
             placeholder: 'use \'/\' to create a new block',
             onReady: () => {
                 editorRef.current = editor;
@@ -45,17 +54,21 @@ function EditorComponent ({ initialData }) {
                 //console.log(JSON.stringify(content));
                 Streamlit.setComponentValue(JSON.stringify(content));
             },
+            tools: EDITOR_JS_TOOLS,
+            // tools: {
+            //     header: Header,
+            // }
         });
     };
-
+    
     useEffect(() => {
-        Streamlit.setComponentReady();
-        initEditor();
-        if (editorRef.current === null) {
+        // console.log(editorRef.current);
+        if (editorRef.current === undefined) { // not null, undefined
+            initEditor();
+            Streamlit.setComponentReady();
         }
-
         return () => {
-            editorRef?.current?.destory();
+            editorRef?.current?.destroy();
             editorRef.current = null;
         };
     // eslint-disable-next-line react-hooks/exhaustive-deps
