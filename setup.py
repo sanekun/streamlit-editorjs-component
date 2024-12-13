@@ -7,7 +7,7 @@ long_description = (this_directory / "README.md").read_text()
 
 setuptools.setup(
     name="streamlit-editorjs-component",
-    version="0.1.2",
+    version="0.1.4",
     author="sanekun",
     url="https://github.com/sanekun/streamlit-editorjs-component",
     author_email="sanekun@kaist.ac.kr",
@@ -16,7 +16,12 @@ setuptools.setup(
     long_description_content_type="text/markdown",
     packages=setuptools.find_packages(),
     include_package_data=True,
-    package_data={"streamlit_editorjs_component": ["frontend/build/*"]},
+    package_data={
+        "streamlit_editorjs_component": [
+            "frontend/build/*",
+            "frontend/build/static/js/*",
+            "frontend/build/static/css/*"
+        ]},
     classifiers=[],
     python_requires=">=3.7",
     install_requires=["streamlit>=1.2", "jinja2"],

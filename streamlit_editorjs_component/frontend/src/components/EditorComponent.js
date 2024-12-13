@@ -8,33 +8,33 @@ import { EDITOR_JS_TOOLS } from './constant';
 import EditorJS from '@editorjs/editorjs';
 import Header from "@editorjs/header";
 
-// class Mycomponent extends StreamlitComponentBase {
-//     render = () => {
-//         let initialData = this.props.args["data"];
-//         let st_height = this.props.args["height"] || 500;
-//         return (
-//             <div style={{height: `${st_height}px`}}>
-//                 <div style={{height: "90%", overflow: "auto", margin: "20px", padding: "20px", width: "90%"}}>
-//                     <EditorComponent
-//                     initialData={initialData}
-//                     />
-//                 </div>
-//             </div>
-//         );
-//     }
-// }
-
 class Mycomponent extends StreamlitComponentBase {
     render = () => {
         let initialData = this.props.args["data"];
         let st_height = this.props.args["height"] || 500;
         return (
-            <EditorComponent
-            initialData={initialData}
-            />
+            <div style={{height: `${st_height}px`}}>
+                <div style={{height: "90%", overflow: "auto", margin: "20px", padding: "20px", width: "90%"}}>
+                    <EditorComponent
+                    initialData={initialData}
+                    />
+                </div>
+            </div>
         );
     }
 }
+
+// class Mycomponent extends StreamlitComponentBase {
+//     render = () => {
+//         let initialData = this.props.args["data"];
+//         let st_height = this.props.args["height"] || 500;
+//         return (
+//             <EditorComponent
+//             initialData={initialData}
+//             />
+//         );
+//     }
+// }
 
 function EditorComponent ({ initialData }) {
     const editorRef = useRef();
@@ -51,21 +51,21 @@ function EditorComponent ({ initialData }) {
             data: initialData || {},
             onChange: async () => {
                 content = await editor.saver.save();
-                console.log(JSON.stringify(content));
+                //console.log(JSON.stringify(content));
                 Streamlit.setComponentValue(JSON.stringify(content));
             },
-            // tools: EDITOR_JS_TOOLS,
-            tools: {
-                header: Header,
-            }
+            tools: EDITOR_JS_TOOLS,
+            // tools: {
+            //     header: Header,
+            // }
         });
     };
-
+    
     useEffect(() => {
-        initEditor();
-        if (editorRef.current === null) {
-            Streamlit.setComponentReady();
+        // console.log(editorRef.current);
+        if (editorRef.current === undefined) { // not null, undefined
             initEditor();
+            Streamlit.setComponentReady();
         }
         return () => {
             editorRef?.current?.destroy();
