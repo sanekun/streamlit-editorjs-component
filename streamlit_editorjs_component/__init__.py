@@ -1,6 +1,5 @@
 import os
 import streamlit.components.v1 as components
-from pathlib import Path
 
 _RELEASE = True  # toggle to develop mode or release mode
 
@@ -30,7 +29,6 @@ def streamlit_editorjs(data=None, key=None, height=500, readonly=False):
 
     return st_editorjs
 
-
 if not _RELEASE:  # for development
     import streamlit as st
 
@@ -38,7 +36,7 @@ if not _RELEASE:  # for development
 
     initial_data = {}
 
-    content = streamlit_editorjs(data=initial_data, key="editorjs", height=1000)
+    content = streamlit_editorjs(data=initial_data, key="editorjs", height=1000, readonly=False)
 
     if st.button("Get data"):
         st.write(content)

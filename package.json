@@ -4,6 +4,7 @@
   ],
   "dependencies": {
     "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
+    "npm": "^11.1.0",
     "streamlit-component-lib": "^2.0.0"
   }
 }

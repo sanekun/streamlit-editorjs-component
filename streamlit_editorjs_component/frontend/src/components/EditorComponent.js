@@ -2,7 +2,6 @@ import { Streamlit, StreamlitComponentBase, withStreamlitConnection } from 'stre
 import React, { useRef, useEffect } from 'react';
 import { EDITOR_JS_TOOLS } from './constant';
 import EditorJS from '@editorjs/editorjs';
-import Header from '@editorjs/header';
 
 class Mycomponent extends StreamlitComponentBase {
 	render = () => {
@@ -27,7 +26,7 @@ function EditorComponent({ initialData, readOnly }) {
 	const initEditor = () => {
 		const editor = new EditorJS({
 			holder: 'editorjs',
-			placeholder: "use '/' to create a new block",
+			placeholder: readOnly ? 'readonly mode' : "use '/' to create a new block", // if readOnly, change placeholder
 			readOnly: readOnly,
 			onReady: () => {
 				editorRef.current = editor;
