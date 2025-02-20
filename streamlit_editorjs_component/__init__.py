@@ -12,7 +12,7 @@ else:
     _custom_component = components.declare_component("streamlit-editorjs", url="http://localhost:3000")
 
 
-def streamlit_editorjs(data=None, key=None, height=500, readonly=False):
+def streamlit_editorjs(data=None, key=None, height=500, readonly=False) -> dict:
     """_summary_
 
     Args:
@@ -27,7 +27,11 @@ def streamlit_editorjs(data=None, key=None, height=500, readonly=False):
 
     st_editorjs = _custom_component(data=data, key=key, height=height, readonly=readonly)
 
-    return st_editorjs
+    if readonly:
+        return data or {}
+
+    return st_editorjs or data or {}
+
 
 if not _RELEASE:  # for development
     import streamlit as st

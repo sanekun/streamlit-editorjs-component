@@ -26,16 +26,16 @@ function EditorComponent({ initialData, readOnly }) {
 	const initEditor = () => {
 		const editor = new EditorJS({
 			holder: 'editorjs',
-			placeholder: readOnly ? 'readonly mode' : "use '/' to create a new block", // if readOnly, change placeholder
+			placeholder: readOnly ? 'readonly mode' : "use '/' to create a new block",
 			readOnly: readOnly,
 			onReady: () => {
 				editorRef.current = editor;
 			},
-			autofocus: true,
+			autofocus: !readOnly,
 			data: initialData || {},
 			onChange: async () => {
 				content = await editor.saver.save();
-				Streamlit.setComponentValue(JSON.stringify(content));
+				Streamlit.setComponentValue(content);
 			},
 			tools: EDITOR_JS_TOOLS,
 		});
