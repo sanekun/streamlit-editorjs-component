@@ -23,6 +23,7 @@ Args:
     data (dict, optional): initial json data formatted as EditorJS. Defaults to None.  
     key (str, optional): Streamlit state key. Defaults to None.  
     height (int, optional): Component block height it the content over the height, it makes scroll. Defaults to 500.
+    readonly (bool, optional): Readonly mode [not updated in PYPI.]
 
 Returns:  
     dict: dictionary content from EditorJS.
@@ -38,6 +39,7 @@ Add tools to [constant.js](streamlit_editorjs_component/frontend/src/components/
 yarn install
 yarn build
 ```
-``` python
+
+``` bash
 streamlit run test/st_component_example.py
 ```
